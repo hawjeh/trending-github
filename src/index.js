@@ -2,6 +2,7 @@
 
 const axios = require('axios');
 const cheerio = require('cheerio');
+const ImgHelper = require('./imageHelper');
 
 'use strict';
 
@@ -27,14 +28,21 @@ module.exports = function (period, language) {
           const starLink = '/' + title.replace(/ /g, '') + '/stargazers';
           const forkLink = '/' + title.replace(/ /g, '') + '/network';
 
-          repos.push({
-            author: title.split(' / ')[0],
-            name: title.split(' / ')[1],
-            href: 'https://github.com/' + title.replace(/ /g, ''),
-            description: $(repo).find('p', '.py-1').text().trim() || null,
-            language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
-            stars: parseInt($(repo).find('[href="' + starLink + '"]').text().trim().replace(',', '') || 0),
-            forks: parseInt($(repo).find('[href="' + forkLink + '"]').text().trim().replace(',', '') || 0)
+          ImgHelper($(repo).find('img', 'avatar mb-1')).then((imgs) => {
+            repos.push({
+              id: index,
+              author: title.split(' / ')[0],
+              name: title.split(' / ')[1],
+              authorName: title,
+              href: 'https://github.com/' + title.replace(/ /g, ''),
+              description: $(repo).find('p', '.py-1').text().trim() || null,
+              colorStyle: $(repo).find('span', '.repo-language-color ml-0')[2].attribs.style,
+              language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
+              stars: parseInt($(repo).find('[href="' + starLink + '"]').text().trim().replace(',', '') || 0),
+              starsDay: $(repo).find('span', '.d-inline-block float-sm-right').last().text().trim().replace(',', ''),
+              forks: parseInt($(repo).find('[href="' + forkLink + '"]').text().trim().replace(',', '') || 0),
+              imgs: imgs
+            });
           });
         });
 

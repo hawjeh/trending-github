@@ -21,11 +21,15 @@ trending()
 //=> [{
 //=>   author: 'asciimoo',
 //=>   name: 'wuzz',
+//=>   authorName: 'asciimoo / wuzz'
 //=>   href: 'https://github.com/asciimoo/wuzz',
 //=>   description: 'Interactive cli tool for HTTP inspection',
+//=>   colorStyle: 'background-color: ##375eab'
 //=>   language: 'Go',
 //=>   stars: 966,
+//=>   starsDay: '1999 stars today'
 //=>   forks: 20
+//=>   imgs: ['imglink1', 'imglink2', 'imglink3']
 //=> }, ... ]
 ```
 
@@ -40,9 +44,12 @@ trending('weekly', 'javascript')
 //=>   name: 'freeCodeCamp',
 //=>   href: 'https://github.com/freeCodeCamp/freeCodeCamp',
 //=>   description: 'The https://freeCodeCamp.com open source codebase and curriculum. Learn to code and help nonprofits.',
+//=>   colorStyle: 'background-color: #f1e05a'
 //=>   language: 'JavaScript',
 //=>   stars: 229260,
+//=>   starsDay: '1999 stars this week'
 //=>   forks: 9289
+//=>   imgs: ['imglink1', 'imglink2', 'imglink3']
 //=> }, ... ]
 ```
 
